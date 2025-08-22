@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900');
+@import 'tailwindcss';
+
+@theme {
+  --font-geist: 'Geist';
+  --color-secondary: #fafafa;
+  --color-bprimary: #d6d6d6;
+  --color-input-primary: #f9f9f9;
+}

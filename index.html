@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="stylesheet" href="/src/style.css" />
+    <link rel="stylesheet" href="/src/markdown-styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/styles/gradient-light.css"
+    />
+
+    <title>Markdown Editor</title>
+
+    <script defer type="module" src="/src/main.js"></script>
+  </head>
+  <body class="font-geist overflow-hidden">
+    <main class="h-screen flex flex-col">
+      <header
+        class="border-b border-b-bprimary px-6 py-2 flex justify-between items-center"
+      >
+        <h1 class="font-medium">Markdown Editor <small>by devokro</small></h1>
+
+        <div class="flex items-center gap-2">
+          <button
+            class="border border-bprimary rounded-md px-2 py-1 transition-colors hover:bg-[#f5f5f5] flex items-center gap-1 text-sm font-medium"
+            id="export"
+          >
+            <img
+              src="/icons/export.svg"
+              alt="Arrow up export icon"
+              class="w-4 h-4"
+            />
+            Export
+          </button>
+          <a
+            href="https://github.com/osakitadev/markdown-editor"
+            rel="nofollow"
+            target="_blank"
+            title="Source Code"
+            class="ml-4"
+          >
+            <img src="/icons/github.svg" alt="GitHub icon" class="w-5 h-5" />
+          </a>
+        </div>
+      </header>
+
+      <div class="flex-1 grid grid-cols-1 md:grid-cols-2 min-h-0">
+        <section class="border-r border-bprimary flex flex-col min-h-0">
+          <header
+            class="px-4 py-2 bg-secondary border-b border-bprimary flex items-center justify-between"
+          >
+            <h2 class="text-sm font-medium text-neutral-500">Editor</h2>
+          </header>
+
+          <!-- editor should scroll if it grows -->
+          <div
+            id="editor-container"
+            class="flex-1 min-h-0 overflow-y-auto"
+          ></div>
+        </section>
+
+        <section class="border-r border-bprimary flex flex-col min-h-0">
+          <header
+            class="px-4 py-2 bg-secondary border-b border-bprimary flex items-center"
+          >
+            <h2 class="text-sm font-medium text-neutral-500">Preview</h2>
+          </header>
+
+          <!-- preview should scroll if it grows -->
+          <div
+            id="editor-preview"
+            class="flex-1 min-h-0 p-2 overflow-y-auto"
+          ></div>
+        </section>
+      </div>
+    </main>
+
+    <div
+      id="modal"
+      class="fixed w-full h-full top-0 left-0 items-center justify-center bg-black/40 backdrop-blur-[2px] hidden"
+    >
+      <div class="bg-white p-4 rounded-md hidden z-20" id="export-modal">
+        <div class="flex items-center justify-between">
+          <h2 class="text-2xl font-semibold">Export File</h2>
+          <button class="close-button font-bold">X</button>
+        </div>
+        <p class="text-sm text-neutral-400 mb-5">
+          Export your markdown as a file and save it on your device
+        </p>
+
+        <form id="form-export" class="flex flex-col mt-2">
+          <label for="file-name" class="text-sm text-neutral-500"
+            >File Name</label
+          >
+          <input
+            type="text"
+            name="file-name"
+            placeholder="Untitled Markdown"
+            class="bg-input-primary p-1 rounded-md border border-bprimary focus:outline-none"
+          />
+
+          <label for="file-extension" class="text-sm text-neutral-500 mt-4"
+            >Export As</label
+          >
+          <select
+            name="file-extension"
+            class="bg-input-primary p-1 rounded-md border border-bprimary focus:outline-none"
+          >
+            <option
+              value="html"
+              selected
+              class="bg-input-primary hover:bg-input-primary"
+            >
+              HTML (.html)
+            </option>
+            <option value="md" class="bg-input-primary hover:bg-input-primary">
+              Markdown (.md)
+            </option>
+          </select>
+
+          <button
+            type="submit"
+            class="mt-10 bg-input-primary border border-bprimary py-1 rounded-lg font-medium"
+          >
+            Export
+          </button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
